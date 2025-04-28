@@ -176,15 +176,15 @@ def main() -> None:
             epic_map[summary] = existing
             continue
         if args.dry_run:
-            print(f"DRY‑RUN: would create Epic '{summary}'", file=sys.stderr)
+            print(f"DRY‑RUN: would create Epic '{summary}' in {args.project_key}", file=sys.stderr)
             epic_map[summary] = object()  # type: ignore[assignment]
             continue
-        issue = jira.create_issue(
-            project={"key": args.project_key},
-            issuetype={"name": "Epic"},
-            summary=summary,
-            fields={args.epic_name_field: summary},
-        )
+        issue = jira.create_issue(fields={
+            "project": {"key": args.project_key},
+            "summary": summary,
+            "issuetype": {"name": "Epic"},
+            # epic_name_field: summary,
+        })
         print(f"Created EPIC {issue.key}: {summary}", file=sys.stderr)
         epic_map[summary] = issue
         idx[("epic", summary.lower())] = issue  # extend index
