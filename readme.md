@@ -11,7 +11,7 @@ Environment variables required:
 Usage:
 ```bash
     python export_jira_hierarchy.py --project-key PROJ --output output.csv
-``
+```
 
 ## Getting it running
 1. Install dependencies
