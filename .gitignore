@@ -1,4 +1,4 @@
 token.txt
-src_token.txt
-dst_token.txt
+src_config.txt
+dst_config.txt
 *.csv

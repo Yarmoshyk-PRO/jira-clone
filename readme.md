@@ -22,9 +22,9 @@ pip install jira python-dotenv
 
 1. Set credentials
 ```bash
-    export JIRA_URL="https://yyarmoshyk.atlassian.net"
-    export JIRA_USER="y.yarmoshyk@gmail.com"
-    export JIRA_API_TOKEN="$(cat src_token.txt)"
+    export JIRA_URL=$(grep jira_url src_config.txt |cut -d "=" -f 2)
+    export JIRA_USER=$(grep login src_config.txt |cut -d "=" -f 2)
+    export JIRA_API_TOKEN=$(grep token src_config.txt |cut -d "=" -f 2)
 ```
 ### Export
 ```bash
@@ -45,9 +45,9 @@ Each task appears on its own line; if the task has no subtasks the subtask colum
 Point it at the new Jira (same env vars as before):
 
 ```bash
-export JIRA_URL="https://new-domain.atlassian.net"
-export JIRA_USER="you@example.com"
-export JIRA_API_TOKEN="$(cat dst_token.txt)"
+    export JIRA_URL=$(grep jira_url dst_config.txt |cut -d "=" -f 2)
+    export JIRA_USER=$(grep login dst_config.txt |cut -d "=" -f 2)
+    export JIRA_API_TOKEN=$(grep token dst_config.txt |cut -d "=" -f 2)
 ```
 
 Run (dry-run first, then live):
