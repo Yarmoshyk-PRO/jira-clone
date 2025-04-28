@@ -1,6 +1,5 @@
-# Export 
-Epics, tasks and subtasks from a Jira project into a CSV file with the hierarchical
-structure Epic → Task → Subtask.
+# Export/Import Epics, tasks and subtasks from a Jira project into a CSV file with the hierarchical
+structure is `Epic` → `Task` → `Subtask`.
 
 Environment variables required:
 ```bash
@@ -20,14 +19,14 @@ Usage:
 ```bash
 pip install jira python-dotenv
 ```
-## Export
+
 1. Set credentials
 ```bash
     export JIRA_URL="https://yyarmoshyk.atlassian.net"
     export JIRA_USER="y.yarmoshyk@gmail.com"
-    export JIRA_API_TOKEN="$(cat token.txt)"
+    export JIRA_API_TOKEN="$(cat src_token.txt)"
 ```
-1. Run
+### Export
 ```bash
     python3 export_jira_hierarchy.py -k DS2 -o yarmoshyk_ds2.csv
 ```
@@ -46,16 +45,12 @@ Each task appears on its own line; if the task has no subtasks the subtask colum
 Point it at the new Jira (same env vars as before):
 
 ```bash
-export JIRA_URL=\"https://new-domain.atlassian.net\"
-export JIRA_USER=\"you@example.com\"
-export JIRA_API_TOKEN=\"new-instance-token\"
+export JIRA_URL="https://new-domain.atlassian.net"
+export JIRA_USER="you@example.com"
+export JIRA_API_TOKEN="$(cat dst_token.txt)"
 ```
 
 Run (dry-run first, then live):
 ```bash
-# See what will be created
-python import_jira_hierarchy.py --csv jira_export.csv --project-key NEWPROJ --dry-run
-
-# Go for it
-python import_jira_hierarchy.py --csv jira_export.csv --project-key NEWPROJ
+python import_jira_hierarchy.py --csv jira_export.csv --project-key DSIT --epic-name-field epicname_12345
 ```
