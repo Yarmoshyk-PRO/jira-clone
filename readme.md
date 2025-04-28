@@ -52,5 +52,8 @@ Point it at the new Jira (same env vars as before):
 
 Run (dry-run first, then live):
 ```bash
-python import_jira_hierarchy.py --csv jira_export.csv --project-key DSIT --epic-name-field epicname_12345
+python import_jira_hierarchy.py \
+    --csv jira_export.csv \
+    --project-key DSIT \
+    --epic-name-field epicname_12345
 ```
